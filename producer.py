@@ -21,20 +21,19 @@ my_name = "danylo"
 topic_name = f"{my_name}_building_sensors"
 
 
-
 for i in range(1, 500):
     # Відправлення повідомлення в топік
     try:
         data = {
-            "sensor_id": random.randint(1, 10),
+            "sensor_id": random.randint(1, 3),
             "timestamp": time.time(),  # Часова мітка
-            "temperature": 0, #random.randint(25, 45),
-            "humidity": 0 #random.randint(15, 85),
+            "temperature": 0,  # random.randint(25, 45),
+            "humidity": 0,  # random.randint(15, 85),
         }
         producer.send(topic_name, key=str(uuid.uuid4()), value=data)
         producer.flush()  # Очікування, поки всі повідомлення будуть відправлені
         print(f"Message {i} sent to topic '{topic_name}' successfully.")
-        time.sleep(0.5)
+        time.sleep(3)
     except Exception as e:
         print(f"An error occurred: {e}")
 
